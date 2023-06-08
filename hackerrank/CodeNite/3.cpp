@@ -1,9 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+#define endl '\n'
+typedef long long ll;
 const int N = 1e5 + 1;
+
 int main()
 {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
     vector<int> track(N, 0);
 
     for (int i = 1, num = 2; i < N; num++)
