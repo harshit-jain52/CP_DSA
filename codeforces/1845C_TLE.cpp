@@ -2,21 +2,6 @@
 using namespace std;
 #define endl '\n'
 const int N = 3e5 + 5;
-int dp[N][15];
-
-int lcs(int i, int j, string &s1, string &s2)
-{
-    if (i < 0 || j < 0)
-        return 0;
-
-    if (dp[i][j] != -1)
-        return dp[i][j];
-
-    int ans = 0;
-    ans = max(lcs(i - 1, j - 1, s1, s2) + (s1[i] == s2[j]), max(lcs(i - 1, j, s1, s2), lcs(i, j - 1, s1, s2)));
-
-    return dp[i][j] = ans;
-}
 
 int main()
 {
@@ -30,6 +15,12 @@ int main()
         cin >> m;
         cin >> l >> r;
         n = s.size();
+
+        vector<vector<int>> indices(10);
+        for (int i = 0; i < n; i++)
+        {
+            indices[s[i] - '0'].push_back(i);
+        }
 
         set<string> allCombinations;
         for (char c = l[0]; c <= r[0]; c++)
@@ -55,20 +46,24 @@ int main()
         }
 
         bool ans = false;
-        for (auto it : allCombinations)
+        for (auto str : allCombinations)
         {
-            for (int i = 0; i < n; i++)
+            int idx = -1;
+            for (char c : str)
             {
-                for (int j = 0; j < m; j++)
+                auto it = upper_bound(indices[c - '0'].begin(), indices[c - '0'].end(), idx);
+                if (it == indices[c - '0'].end())
                 {
-                    dp[i][j] = -1;
+                    ans = true;
+                    break;
+                }
+                else
+                {
+                    idx = *it;
                 }
             }
-            if (lcs(n - 1, m - 1, s, it) != m)
-            {
-                ans = true;
+            if (ans)
                 break;
-            }
         }
 
         if (ans)
