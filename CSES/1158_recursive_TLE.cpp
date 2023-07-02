@@ -5,7 +5,7 @@ typedef long long ll;
 const int N = 1e5 + 1;
 
 int dp[1001][N];
-int h[1001], s[1001];
+pair<int, int> books[1001];
 
 int func(int idx, int money_left)
 {
@@ -16,14 +16,15 @@ int func(int idx, int money_left)
         return dp[idx][money_left];
 
     int ans = 0;
-    if (h[idx] <= money_left)
+    if (books[idx].first <= money_left)
     {
-        ans = max(ans, s[idx] + func(idx - 1, money_left - h[idx]));
+        ans = max(ans, books[idx].second + func(idx - 1, money_left - books[idx].first));
     }
     ans = max(ans, func(idx - 1, money_left));
 
     return dp[idx][money_left] = ans;
 }
+
 int main()
 {
     memset(dp, -1, sizeof(dp));
@@ -32,12 +33,22 @@ int main()
 
     for (int i = 0; i < n; i++)
     {
-        cin >> h[i];
+        cin >> books[i].first;
     }
     for (int i = 0; i < n; i++)
     {
-        cin >> s[i];
+        cin >> books[i].second;
     }
+    sort(books, books + n);
 
-    cout << func(n - 1, x);
+    int start = -1;
+    for (int i = n - 1; i >= 0; i--)
+    {
+        if (books[i].first <= x)
+        {
+            start = i;
+            break;
+        }
+    }
+    cout << func(start, x);
 }
