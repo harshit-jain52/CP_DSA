@@ -9,3 +9,4 @@ Handles:
 - [Codechef](https://www.codechef.com/users/harshit_jain52)
 - [atcoder](https://atcoder.jp/users/harshit_jain52)
 - [codingninjas](https://www.codingninjas.com/studio/profile/8582763e-05e0-493c-8d8c-6e05f9b20a52)
+- [Linkedin](https://www.linkedin.com/in/harshit-jain-4081a0256/)
