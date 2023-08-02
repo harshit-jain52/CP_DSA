@@ -1,47 +1,55 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+bool solve()
+{
+    int n;
+    cin >> n;
+    int a[n], x = 0;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+        x = x ^ a[i];
+    }
+
+    if (x == 0)
+        return true;
+
+    bool isPresent = false;
+    for (int i = 0; i < n; i++)
+    {
+        if (a[i] == x)
+        {
+            isPresent = true;
+            a[i] = 0;
+            break;
+        }
+    }
+    if (!isPresent)
+        return false;
+
+    set<int> st;
+    st.insert(0);
+    int y = 0;
+    for (int i = 0; i < n; i++)
+    {
+        y = y ^ a[i];
+
+        if (st.find(y ^ x) != st.end())
+            return true;
+
+        st.insert(y);
+    }
+    return false;
+}
+
 int main()
 {
     int t;
     cin >> t;
     while (t--)
     {
-        int n, a;
-        cin >> n;
-        int x = 0;
-        map<int, int> ct;
-        for (int i = 0; i < n; i++)
-        {
-            cin >> a;
-            ct[a]++;
-            x = x ^ a;
-        }
-        bool ans = false;
-        for (auto it : ct)
-        {
-            int elem = it.first;
-            int count = it.second;
-            int rem;
-            if (count % 2 == 1)
-            {
-                rem = x ^ elem;
-                if (rem == elem || (rem == 0 && count > 1))
-                {
-                    ans = true;
-                    break;
-                }
-            }
-            else
-            {
-                if (x == 0)
-                {
-                    ans = true;
-                    break;
-                }
-            }
-        }
-
+        bool ans = solve();
         if (ans)
         {
             cout << "YES";
