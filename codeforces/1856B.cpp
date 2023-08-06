@@ -31,7 +31,7 @@ int main()
                     ct1++;
             }
 
-            if (ct1 * 2 >= sum)
+            if (ct1 * 2 + (n - ct1) > sum)
                 cout << "NO";
             else
                 cout << "YES";
