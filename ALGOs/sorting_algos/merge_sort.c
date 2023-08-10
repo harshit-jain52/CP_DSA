@@ -58,4 +58,5 @@ void mergeSort(int arr[], int l, int r)
     merge(arr, l, mid, r);
 }
 
-// O(NlogN)
+// TC: O(NlogN)
+// SC : O(N) + RSS

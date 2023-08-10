@@ -16,4 +16,5 @@ void insertionSort(int arr[], int n)
     }
 }
 
-// O(N^2)
+// TC: O(N^2)
+// SC: O(1)
