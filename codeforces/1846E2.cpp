@@ -2,7 +2,6 @@
 using namespace std;
 #define endl '\n'
 typedef unsigned long long ull;
-const ull INF = 1e18 + 4;
 
 ull summation(ull k, int ct, ull n)
 {
@@ -10,9 +9,16 @@ ull summation(ull k, int ct, ull n)
     ull tmp = k;
     while (ct--)
     {
+        if (ULLONG_MAX - tmp < sum)
+            return ULLONG_MAX;
+        
         sum += tmp;
         if (sum > n)
             return sum;
+
+        if (ULLONG_MAX / k < tmp && ct != 0)
+            return ULLONG_MAX;
+            
         tmp *= k;
     }
     return sum;
@@ -22,7 +28,7 @@ bool solve(ull n)
 {
     for (int i = 2; i < 64; i++)
     {
-        ull lo = 2, hi = sqrt(n)+2, mid;
+        ull lo = 2, hi = sqrt(n) + 2, mid;
         while (lo <= hi)
         {
             mid = (lo + hi) / 2;
