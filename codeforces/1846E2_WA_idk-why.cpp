@@ -22,7 +22,7 @@ bool solve(ull n)
 {
     for (int i = 2; i < 64; i++)
     {
-        ull lo = 2, hi = sqrt(n), mid;
+        ull lo = 2, hi = 1e9, mid;
         while (lo <= hi)
         {
             mid = (lo + hi) / 2;
