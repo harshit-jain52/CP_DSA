@@ -3,7 +3,7 @@ using namespace std;
 typedef long long ll;
 
 const int p = 31;
-const int M = 1e9 + 7;
+const int M = 1e9 + 9;
 
 bool robin_karp(string &str, string &text) // occurence of str in text
 {
@@ -23,7 +23,7 @@ bool robin_karp(string &str, string &text) // occurence of str in text
     // hash values of all prefixes of text
     vector<ll> h_T(T + 1, 0);
     for (int i = 0; i < T; i++)
-        h_T[i + 1] = (h_T[i - 1] + (text[i] - 'a' + 1) * p_pow[i]) % M;
+        h_T[i + 1] = (h_T[i] + (text[i] - 'a' + 1) * p_pow[i]) % M;
 
     // hash value of str
     long long h_S = 0;
