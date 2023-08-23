@@ -76,12 +76,21 @@ int main()
             g[u].push_back(v);
             g[v].push_back(u);
         }
-
+        map<int, int> ct;
+        
         ll k = sqrt(n);
         if (k * k != n)
             goto end;
 
         if (k * (k + 1) != m)
+            goto end;
+
+        for (int i = 1; i <= n; i++)
+        {
+            ct[g[i].size()]++;
+        }
+
+        if (ct[4] != k || ct[2] != n - k)
             goto end;
 
         dfs(1, 0);
@@ -107,7 +116,23 @@ int main()
                 goto end;
         }
 
-        ans = true;
+        for (auto vec : allCycles)
+        {
+            if (g[vec[0]].size() == 4)
+            {
+                int i = 0;
+                for (i = 0; i < k; i++)
+                {
+                    if (g[vec[i]].size() != 4)
+                        break;
+                }
+                if (i == k)
+                {
+                    ans = true;
+                    goto end;
+                }
+            }
+        }
 
     end:
 
