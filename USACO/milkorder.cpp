@@ -26,6 +26,7 @@ vector<int> g[N];
 vector<bool> visited;
 vector<bool> recur_stack;
 vector<int> ans;
+vector<int> indegree;
 
 bool detectCycle(int vertex)
 {
@@ -84,27 +85,31 @@ bool check(int idx)
     return !isCycle(n);
 }
 
-void dfs(int vertex)
+void kahn(int n)
 {
-    visited[vertex] = true;
-    for (int child : g[vertex])
-    {
-        if (!visited[child])
-            dfs(child);
-    }
-    ans.push_back(vertex);
-}
+    priority_queue<int, vector<int>, greater<int>> pq;
 
-void topological_sort(int n)
-{
-    visited.assign(n + 1, false);
-
-    for (int i = n; i >= 1; i--)
+    for (int i = 1; i <= n; i++)
     {
-        if (!visited[i])
-            dfs(i);
+        if (indegree[i] == 0)
+            pq.push(i);
     }
-    reverse(ans.begin(), ans.end());
+
+    while (!pq.empty())
+    {
+        int cur_v = pq.top();
+        pq.pop();
+
+        ans.push_back(cur_v);
+
+        for (int next : g[cur_v])
+        {
+            indegree[next]--;
+
+            if (indegree[next] == 0)
+                pq.push(next);
+        }
+    }
 }
 
 void ordering(int idx)
@@ -114,15 +119,17 @@ void ordering(int idx)
         g[i].clear();
     }
 
+    indegree.assign(n + 1, 0);
     for (int i = 0; i <= idx; i++)
     {
         for (int j = 0; j < obs[i].size() - 1; j++)
         {
             g[obs[i][j]].push_back(obs[i][j + 1]);
+            indegree[obs[i][j + 1]]++;
         }
     }
 
-    topological_sort(n);
+    kahn(n);
 }
 
 int main()

@@ -9,7 +9,7 @@ for every directed edge u-v, vertex u comes before v in the ordering
 const int N = 1e5 + 10;
 vector<int> g[N];
 vector<bool> visited;
-vector<int> ans;
+vector<int> order;
 
 void dfs(int vertex)
 {
@@ -19,7 +19,7 @@ void dfs(int vertex)
         if (!visited[child])
             dfs(child);
     }
-    ans.push_back(vertex);
+    order.push_back(vertex);
 }
 
 void topological_sort(int n)
@@ -31,5 +31,5 @@ void topological_sort(int n)
         if (!visited[i])
             dfs(i);
     }
-    reverse(ans.begin(), ans.end());
+    reverse(order.begin(), order.end());
 }
