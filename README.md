@@ -10,3 +10,10 @@ Handles:
 - [atcoder](https://atcoder.jp/users/harshit_jain52)
 - [codingninjas](https://www.codingninjas.com/studio/profile/8582763e-05e0-493c-8d8c-6e05f9b20a52)
 - [Linkedin](https://www.linkedin.com/in/harshit-jain-4081a0256/)
+
+Resources:
+- [Codeforces C2Ladder](https://c2-ladders.com/)
+- [Atcoder DP Tasks](https://atcoder.jp/contests/dp/tasks)
+- [Leetcode DSA Sheet](https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/)
+- [USACO Guide](https://usaco.guide/)
+- [CP Algorithms](https://cp-algorithms.com/)
