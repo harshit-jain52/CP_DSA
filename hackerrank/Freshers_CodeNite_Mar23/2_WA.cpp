@@ -8,7 +8,7 @@ int main()
     cin >> t;
     while (t--)
     {
-        int n, k, i, num, count;
+        int n, k, i, num;
         cin >> n >> k;
 
         vector<ll> before;
