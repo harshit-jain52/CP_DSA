@@ -33,5 +33,29 @@ void egcd(int x, int y)
 
 int lcm(int a, int b)
 {
+    int x, y, u, v;
+
+    x = u = a;
+    y = v = b;
+
+    while (x != y)
+    {
+        if (x > y)
+        {
+            x -= y;
+            u += v;
+        }
+        else
+        {
+            y -= x;
+            v += u;
+        }
+    }
+
+    return (u + v) / 2;
+}
+
+int lcm_fast(int a, int b)
+{
     return (a * b) / gcd(a, b);
 }
