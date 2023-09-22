@@ -1,11 +1,9 @@
-// print cycles of undirected graph
-
 #include <bits/stdc++.h>
 using namespace std;
 #define endl '\n'
 typedef long long ll;
 
-const int N = 2e5 + 10;
+const int N = 1e5 + 10;
 vector<int> g[N];
 int color[N];
 int par[N];
@@ -24,10 +22,13 @@ void reset(int n)
 
 void dfs(int v, int p)
 {
-    if (color[v] == 2) // completely visited
+    if (allCycles.size() > 0)
+        return;
+        
+    if (color[v] == 2)
         return;
 
-    if (color[v] == 1) // partially visited; cycle detected
+    if (color[v] == 1)
     {
         vector<int> cycle;
 
@@ -39,8 +40,9 @@ void dfs(int v, int p)
             cur = par[cur];
             cycle.push_back(cur);
         }
+        if (cycle.size() >= 3)
+            allCycles.push_back(cycle);
 
-        allCycles.push_back(cycle);
         return;
     }
 
@@ -57,8 +59,6 @@ void dfs(int v, int p)
 
     color[v] = 2;
 }
-
-// TC : O(N+M)
 
 int main()
 {
@@ -83,4 +83,20 @@ int main()
         if (color[i] == 0)
             dfs(i, 0);
     }
+
+    bool isPossible = false;
+
+    if (allCycles.size() > 0)
+    {
+        auto cycle = allCycles[0];
+        isPossible = true;
+        cout << cycle.size() + 1 << endl;
+        for (int city : cycle)
+            cout << city << " ";
+
+        cout << cycle[0];
+    }
+
+    if (!isPossible)
+        cout << "IMPOSSIBLE";
 }

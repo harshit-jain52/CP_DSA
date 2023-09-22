@@ -1,11 +1,9 @@
-// print cycles of undirected graph
-
 #include <bits/stdc++.h>
 using namespace std;
 #define endl '\n'
 typedef long long ll;
 
-const int N = 2e5 + 10;
+const int N = 1e5 + 10;
 vector<int> g[N];
 int color[N];
 int par[N];
@@ -24,10 +22,13 @@ void reset(int n)
 
 void dfs(int v, int p)
 {
-    if (color[v] == 2) // completely visited
+    if (allCycles.size() > 0)
         return;
 
-    if (color[v] == 1) // partially visited; cycle detected
+    if (color[v] == 2)
+        return;
+
+    if (color[v] == 1)
     {
         vector<int> cycle;
 
@@ -39,8 +40,9 @@ void dfs(int v, int p)
             cur = par[cur];
             cycle.push_back(cur);
         }
+        if (cycle.size() >= 2)
+            allCycles.push_back(cycle);
 
-        allCycles.push_back(cycle);
         return;
     }
 
@@ -50,15 +52,15 @@ void dfs(int v, int p)
     for (int child : g[v])
     {
         if (child == par[v])
-            continue;
+        {
+            allCycles.push_back({v, child});
+        }
 
         dfs(child, v);
     }
 
     color[v] = 2;
 }
-
-// TC : O(N+M)
 
 int main()
 {
@@ -75,7 +77,6 @@ int main()
         int u, v;
         cin >> u >> v;
         g[u].push_back(v);
-        g[v].push_back(u);
     }
 
     for (int i = 1; i <= n; i++)
@@ -83,4 +84,19 @@ int main()
         if (color[i] == 0)
             dfs(i, 0);
     }
+
+    if (allCycles.size() > 0)
+    {
+        auto cycle = allCycles[0];
+        int sz = cycle.size();
+
+        cout << sz + 1 << endl;
+        for (int i = sz - 1; i >= 0; i--)
+        {
+            cout << cycle[i] << " ";
+        }
+        cout << cycle[sz - 1];
+    }
+    else
+        cout << "IMPOSSIBLE";
 }
