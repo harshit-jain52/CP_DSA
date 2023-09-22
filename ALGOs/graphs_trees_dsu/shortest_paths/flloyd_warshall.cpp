@@ -1,4 +1,5 @@
 // all pair shortest paths
+// can handle negative weights, but not negative cycles
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -42,4 +43,6 @@ int main()
             }
         }
     }
+
+    // O(V^3)
 }

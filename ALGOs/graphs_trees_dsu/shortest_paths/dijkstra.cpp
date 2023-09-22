@@ -1,18 +1,19 @@
-// shortest path in weighted directed graph
+// single source shortest path in weighted directed graph
+// can't handle negative weights
 
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
 
 const int N = 1e5 + 10;
-const ll INF = 1e15 + 10;
-vector<pair<int, ll>> g[N];
-vector<ll> dist(N, INF);
+const int INF = 1e9 + 10;
+
+vector<pair<int, int>> g[N]; // weighted graph
+vector<int> dist(N, INF);
 vector<bool> vis(N, false);
 
 void dijkstra(int src)
 {
-    set<pair<int, int>> st;
+    set<pair<int, int>> st; // weight,node
 
     st.insert({0, src});
     dist[src] = 0;
@@ -20,18 +21,16 @@ void dijkstra(int src)
     while (st.size() > 0)
     {
         auto node = *st.begin();
-        int v = node.second;
-        ll d = node.first;
+        int v = node.second, d = node.first;
         st.erase(st.begin());
 
         if (vis[v])
             continue;
-
+        
         vis[v] = true;
         for (auto child : g[v])
         {
-            int child_v = child.first;
-            ll wt = child.second;
+            int child_v = child.first, wt = child.second;
             if (dist[v] + wt < dist[child_v])
             {
                 dist[child_v] = dist[v] + wt;
@@ -39,6 +38,7 @@ void dijkstra(int src)
             }
         }
     }
+    // O(V+Elog(V))
 }
 
 int main()
@@ -48,16 +48,8 @@ int main()
 
     for (int i = 0; i < m; i++)
     {
-        int x, y;
-        ll wt;
+        int x, y, wt;
         cin >> x >> y >> wt;
-        g[x].push_back({y, wt});
-    }
-
-    dijkstra(1);
-
-    for (int i = 1; i <= n; i++)
-    {
-        cout << dist[i] << " ";
+        g[x].push_back({y, wt}); // directed graph
     }
 }

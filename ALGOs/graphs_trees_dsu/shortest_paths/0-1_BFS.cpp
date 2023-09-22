@@ -1,3 +1,6 @@
+// single source shortest path in weighted directed graph
+// weights are either 0 or 1
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -36,7 +39,7 @@ void bfs(int src)
         }
     }
 
-    // Time Complexity: O(V + E);
+    // O(V + E);
 }
 
 int main()

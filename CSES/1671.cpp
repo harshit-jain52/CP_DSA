@@ -1,17 +1,16 @@
-// shortest path in weighted directed graph
-
 #include <bits/stdc++.h>
 using namespace std;
+typedef long long ll;
 
 const int N = 1e5 + 10;
-const int INF = 1e9 + 10;
-vector<pair<int, int>> g[N]; // weighted graph
-vector<int> dist(N, INF);
+const ll INF = 1e15 + 10;
+vector<pair<int, ll>> g[N];
+vector<ll> dist(N, INF);
 vector<bool> vis(N, false);
 
 void dijkstra(int src)
 {
-    set<pair<int, int>> st; // weight,node
+    set<pair<ll, int>> st;
 
     st.insert({0, src});
     dist[src] = 0;
@@ -19,16 +18,17 @@ void dijkstra(int src)
     while (st.size() > 0)
     {
         auto node = *st.begin();
-        int v = node.second, d = node.first;
+        int v = node.second;
         st.erase(st.begin());
 
         if (vis[v])
             continue;
-        
+
         vis[v] = true;
         for (auto child : g[v])
         {
-            int child_v = child.first, wt = child.second;
+            int child_v = child.first;
+            ll wt = child.second;
             if (dist[v] + wt < dist[child_v])
             {
                 dist[child_v] = dist[v] + wt;
@@ -36,8 +36,8 @@ void dijkstra(int src)
             }
         }
     }
-    // O(V+Elog(V))
 }
+
 int main()
 {
     int n, m;
@@ -45,8 +45,16 @@ int main()
 
     for (int i = 0; i < m; i++)
     {
-        int x, y, wt;
+        int x, y;
+        ll wt;
         cin >> x >> y >> wt;
-        g[x].push_back({y, wt}); // directed graph
+        g[x].push_back({y, wt});
+    }
+
+    dijkstra(1);
+
+    for (int i = 1; i <= n; i++)
+    {
+        cout << dist[i] << " ";
     }
 }
