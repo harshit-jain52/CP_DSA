@@ -24,7 +24,7 @@ int compareY(const void *a, const void *b)
 
 float dist(point p1, point p2)
 {
-    return sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+    return sqrtf((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
 }
 
 float min(float x, float y)
