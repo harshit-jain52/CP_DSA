@@ -120,7 +120,7 @@ int main()
     }
 
     qsort(Px, n, sizeof(point), compareX); // sort points acc to x-coordinate
-    qsort(Py, n, sizeof(point), compareX); // sort points acc to y-coordinate
+    qsort(Py, n, sizeof(point), compareY); // sort points acc to y-coordinate
 
     float minDist = closestPair(Px, Py, n);
     
