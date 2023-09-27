@@ -8,7 +8,7 @@ typedef struct node
     struct node *right;
 } node;
 
-node *newNode(int val)
+node *newNode(int val) // O(depth)
 {
     node *vertex = (node *)malloc(sizeof(node));
     vertex->data = val;
@@ -18,7 +18,7 @@ node *newNode(int val)
     return vertex;
 }
 
-node *insertNode(node *root, int val)
+node *insertNode(node *root, int val) // O(depth)
 {
     if (root == NULL)
         root = newNode(val);
@@ -30,7 +30,7 @@ node *insertNode(node *root, int val)
     return root;
 }
 
-node *getMax(node *root)
+node *getMax(node *root) // O(depth)
 {
     if (root->right != NULL)
         return getMax(root->right);
@@ -38,7 +38,7 @@ node *getMax(node *root)
         return root;
 }
 
-node *getMin(node *root)
+node *getMin(node *root) // O(depth)
 {
     if (root->left != NULL)
         return getMin(root->left);
@@ -46,7 +46,7 @@ node *getMin(node *root)
         return root;
 }
 
-node *deleteNode(node *root, int val)
+node *deleteNode(node *root, int val) // O(depth)
 {
     if (root == NULL)
         return root;
@@ -76,12 +76,12 @@ node *deleteNode(node *root, int val)
         }
         else
         {
-            node *MaxInLeft = getMax(root->left);                 // finds the biggest node in the left branch
+            node *MaxInLeft = getMax(root->left);                 // finds the biggest node in the left branch (inorder predecessor)
             root->data = MaxInLeft->data;                         // copy data
             root->left = deleteNode(root->left, MaxInLeft->data); // recursively delete the max node in left
 
             /*
-            Easier approach but can make tree more unbalanced
+            Easier approach
 
             node *MaxInLeft = getMax(root->left); // finds the biggest node in the left branch
             MaxInLeft->right = root->right;       // SHIFT the right subtree
@@ -90,13 +90,21 @@ node *deleteNode(node *root, int val)
             root = root->left;
             free(tmp);
             */
+
+            /*
+            Alternatively,
+
+            node *MinInRight = getMax(root->right);                 // finds the smallest node in the left branch (inorder successor)
+            root->data = MinInRight->data;                          // copy data
+            root->left = deleteNode(root->right, MaxInRight->data); // recursively delete the min node in right
+            */
         }
     }
 
     return root;
 }
 
-int findNode(node *root, int key)
+int findNode(node *root, int key) // O(depth)
 {
     if (root == NULL)
         return 0;
@@ -108,7 +116,7 @@ int findNode(node *root, int key)
         return findNode(root->right, key);
 }
 
-void printSorted(node *root) // In-Order Traversal of BST
+void printSorted(node *root) // In-Order Traversal of BST; O(N)
 {
     if (root == NULL)
         return;
