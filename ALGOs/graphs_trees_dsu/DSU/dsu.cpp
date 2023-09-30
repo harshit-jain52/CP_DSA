@@ -6,21 +6,21 @@ int parent[N];
 int set_size[N];
 int depth[N];
 
-void make(int v)
+void make(int v) // initialize
 {
     parent[v] = v;
     set_size[v] = 1;
     depth[v] = 0;
 }
 
-int find(int v)
+int find(int v) // find root
 {
     if (v == parent[v])
         return v;
     return parent[v] = find(parent[v]); // path compression
 }
 
-void unionBySize(int a, int b)
+void unionBySize(int a, int b) // union by rank
 {
     a = find(a);
     b = find(b);
@@ -52,8 +52,8 @@ void unionByDepth(int a, int b)
     }
 }
 
-//  Amortrized Time Complexity O(α(n)); α(n)--> inverse Ackermann function: grows verrrrry slowly
-// Time complexity without path compression: O(log(n))
+// Amortrized Time Complexity O(α(n)); α(n)--> inverse Ackermann function: grows verrrrry slowly
+// Time complexity without path compression: O(depth = logN)
 int main()
 {
 }
