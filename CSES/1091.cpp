@@ -7,14 +7,14 @@ int main()
 {
     int n, m;
     cin >> n >> m;
-    vector<int> h(n + 1);
-    h[0] = -1;
+    multiset<int> h;
+
     for (int i = 1; i <= n; i++)
     {
-        cin >> h[i];
+        int tmp;
+        cin >> tmp;
+        h.insert(tmp);
     }
-
-    sort(h.begin(), h.end());
 
     while (m--)
     {
@@ -22,12 +22,15 @@ int main()
         cin >> t;
         if (h.size() > 0)
         {
-            auto it = upper_bound(h.begin(), h.end(), t);
-            it--;
-            cout << *it << endl;
-            
-            if (it != h.begin())
+            auto it = h.upper_bound(t);
+            if (it == h.begin())
+                cout << -1 << endl;
+            else
+            {
+                it--;
+                cout << *it << endl;
                 h.erase(it);
+            }
         }
         else
         {
