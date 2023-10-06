@@ -1,30 +1,85 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Priority Queue: Balanced BST Implementation
+
 typedef struct node
 {
-    int data;
+    int priority; // lower value -> higher priority
     struct node *left;
     struct node *right;
-    int height;
+    int height; // height-balanced
 } node;
 
-int max(int x, int y) // Utility Function
-{
-    return (x > y) ? x : y;
-}
-
-node *newNode(int val) // O(logN)
+node *newNode(int p)
 {
     node *vertex = (node *)malloc(sizeof(node));
-    vertex->data = val;
+    vertex->priority = p;
     vertex->left = NULL;
     vertex->right = NULL;
 
     return vertex;
 }
 
-int getHeight(node *root) // O(1)
+int max(int x, int y);
+int getHeight(node *root);
+node *getMax(node *root);
+node *getMin(node *root);
+node *rightRotate(node *parent);
+node *leftRotate(node *parent);
+node *retrace(node *root);
+node *insertNode(node *root, int val);
+node *deleteNode(node *root, int val);
+
+int front(node *root) // O(logN)
+{
+    node *tmp = getMin(root);
+
+    if (tmp == NULL)
+    {
+        printf("\nfront: Empty Priority Queue\n");
+        exit(0);
+    }
+    return tmp->priority;
+}
+
+node *pop(node *root) // O(logN)
+{
+    node *tmp = getMin(root);
+    if (tmp == NULL)
+    {
+        printf("\npop: Empty Priority Queue\n");
+        exit(0);
+    }
+
+    return deleteNode(root, tmp->priority);
+}
+
+node *push(node *root, int newNum) // O(logN)
+{
+    return insertNode(root, newNum);
+}
+
+/*
+int main()
+{
+    node *root = NULL;
+    int a[] = {2, 18, 42, 43, 69, 54, 74, 93, 99, 100, 6};
+    for (int i = 0; i < 11; i++)
+    {
+        root = insertNode(root, a[i]);
+        printTree(root, 0);
+        printf("\n");
+    }
+}
+*/
+
+int max(int x, int y)
+{
+    return (x > y) ? x : y;
+}
+
+int getHeight(node *root)
 {
     if (root == NULL)
         return -1;
@@ -32,7 +87,7 @@ int getHeight(node *root) // O(1)
     return root->height;
 }
 
-node *getMax(node *root) // O(logN)
+node *getMax(node *root)
 {
     if (root->right != NULL)
         return getMax(root->right);
@@ -40,7 +95,7 @@ node *getMax(node *root) // O(logN)
         return root;
 }
 
-node *getMin(node *root) // O(logN)
+node *getMin(node *root)
 {
     if (root->left != NULL)
         return getMin(root->left);
@@ -48,7 +103,7 @@ node *getMin(node *root) // O(logN)
         return root;
 }
 
-node *rightRotate(node *parent) // O(1)
+node *rightRotate(node *parent)
 {
     node *child = parent->left;
 
@@ -62,7 +117,7 @@ node *rightRotate(node *parent) // O(1)
     return parent;
 }
 
-node *leftRotate(node *parent) // O(1)
+node *leftRotate(node *parent)
 {
     node *child = parent->right;
 
@@ -76,22 +131,22 @@ node *leftRotate(node *parent) // O(1)
     return parent;
 }
 
-node *retrace(node *root) // O(1)
+node *retrace(node *root)
 {
     if (root == NULL)
         return NULL;
 
-    if ((getHeight(root->left) - getHeight(root->right)) > 1) // left-heavy
+    if ((getHeight(root->left) - getHeight(root->right)) > 1)
     {
-        if (getHeight(root->left->left) < getHeight(root->left->right)) // left subtree is right heavy
+        if (getHeight(root->left->left) < getHeight(root->left->right))
         {
             root->left = leftRotate(root->left);
         }
         root = rightRotate(root);
     }
-    else if ((getHeight(root->right) - getHeight(root->left)) > 1) // right-heavy
+    else if ((getHeight(root->right) - getHeight(root->left)) > 1)
     {
-        if (getHeight(root->right->left) > getHeight(root->right->right)) // right subtree is left heavy
+        if (getHeight(root->right->left) > getHeight(root->right->right))
         {
             root->right = rightRotate(root->right);
         }
@@ -102,26 +157,26 @@ node *retrace(node *root) // O(1)
     return root;
 }
 
-node *insertNode(node *root, int val) // O(logN)
+node *insertNode(node *root, int val)
 {
     if (root == NULL)
         root = retrace(newNode(val));
-    else if (val > root->data)
+    else if (val > root->priority)
         root->right = insertNode(root->right, val);
-    else if (val < root->data)
+    else if (val < root->priority)
         root->left = insertNode(root->left, val);
 
     return retrace(root);
 }
 
-node *deleteNode(node *root, int val) // O(logN)
+node *deleteNode(node *root, int val)
 {
     if (root == NULL)
         return root;
 
-    if (val > root->data)
+    if (val > root->priority)
         root->right = deleteNode(root->right, val);
-    else if (val < root->data)
+    else if (val < root->priority)
         root->left = deleteNode(root->left, val);
     else
     {
@@ -144,57 +199,11 @@ node *deleteNode(node *root, int val) // O(logN)
         }
         else
         {
-            node *MinInRight = getMin(root->right);                 // finds the smallest node in the right branch
-            root->data = MinInRight->data;                          // copy data
-            root->right = deleteNode(root->right, MinInRight->data); // recursively delete the min node in right
+            node *MinInRight = getMax(root->right);
+            root->priority = MinInRight->priority;
+            root->left = deleteNode(root->right, MinInRight->priority);
         }
     }
 
     return retrace(root);
 }
-
-int findNode(node *root, int key) // O(logN)
-{
-    if (root == NULL)
-        return 0;
-    if (root->data == key)
-        return 1;
-    if (root->data > key)
-        return findNode(root->left, key);
-    if (root->data < key)
-        return findNode(root->right, key);
-}
-
-void printSorted(node *root) // In-Order Traversal of BST; O(N)
-{
-    if (root == NULL)
-        return;
-
-    printSorted(root->left);
-    printf("\t[ %d ]\t", root->data);
-    printSorted(root->right);
-}
-
-void printTree(node *root, int idx) // Pre-Order Traversal
-{
-    if (root == NULL)
-        return;
-
-    printf("%d [%d] ", root->data, idx);
-    printTree(root->left, idx + 1);
-    printTree(root->right, idx + 1);
-}
-
-/*
-int main()
-{
-    node *root = NULL;
-    int a[] = {2, 18, 42, 43, 69, 54, 74, 93, 99, 100, 6};
-    for (int i = 0; i < 11; i++)
-    {
-        root = insertNode(root, a[i]);
-        printTree(root, 0);
-        printf("\n");
-    }
-}
-*/

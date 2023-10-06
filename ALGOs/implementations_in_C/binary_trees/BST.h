@@ -94,9 +94,9 @@ node *deleteNode(node *root, int val) // O(depth)
             /*
             Alternatively,
 
-            node *MinInRight = getMax(root->right);                 // finds the smallest node in the left branch
+            node *MinInRight = getMin(root->right);                 // finds the smallest node in the right branch
             root->data = MinInRight->data;                          // copy data
-            root->left = deleteNode(root->right, MinInRight->data); // recursively delete the min node in right
+            root->right = deleteNode(root->right, MinInRight->data); // recursively delete the min node in right
             */
         }
     }
