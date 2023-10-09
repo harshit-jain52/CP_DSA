@@ -1,9 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include <stdio.h>
-#include <stdlib.h>
-
 typedef struct node
 {
     int data;
@@ -155,6 +152,114 @@ vector<vector<int>> levelOrder(node *root)
                 q.push(curr->right);
         }
         ans.push_back(level);
+    }
+
+    return ans;
+}
+
+vector<int> boundaryTraversal(node *root) // Anti-Clockwise
+{
+    vector<int> ans;
+    if (root == NULL)
+        return ans;
+
+    ans.push_back(root->data);
+
+    // Left Boundary (excluding leaves)
+    node *curr = root->left;
+    while (curr)
+    {
+        if (curr->left != NULL || curr->right != NULL)
+            ans.push_back(curr->data);
+
+        if (curr->left != NULL)
+            curr = curr->left;
+        else
+            curr = curr->right;
+    }
+
+    // Leaves
+    curr = root;
+    stack<node *> st;
+    while (true)
+    {
+        if (curr != NULL)
+        {
+            st.push(curr);
+            curr = curr->left;
+        }
+        else
+        {
+            if (st.empty())
+                break;
+
+            curr = st.top();
+            if (curr->left == NULL && curr->right == NULL)
+                ans.push_back(curr->data);
+            st.pop();
+            curr = curr->right;
+        }
+    }
+
+    // Right Boundary (excluding Leaves)
+    curr = root->right;
+
+    while (curr)
+    {
+        if (curr->left != NULL || curr->right != NULL)
+            st.push(curr);
+
+        if (curr->right != NULL)
+            curr = curr->right;
+        else
+            curr = curr->left;
+    }
+
+    while (!st.empty())
+    {
+        ans.push_back(st.top()->data);
+        st.pop();
+    }
+
+    return ans;
+}
+
+vector<vector<int>> verticalOrder(node *root)
+{
+    vector<vector<int>> ans;
+    if (root == NULL)
+        return ans;
+
+    node *curr = root;
+    map<int, map<int, multiset<int>>> m;
+    queue<pair<node *, pair<int, int>>> q;
+    q.push({curr, {0, 0}});
+
+    while (!q.empty())
+    {
+        auto p = q.front();
+        q.pop();
+        curr = p.first;
+        int vertical = p.second.first, level = p.second.second;
+        m[vertical][level].insert(curr->data);
+
+        if (curr->left)
+            q.push({curr->left, {vertical - 1, level + 1}});
+        if (curr->right)
+            q.push({curr->right, {vertical + 1, level + 1}});
+    }
+
+    for (auto y : m)
+    {
+        vector<int> v;
+        for (auto x : y.second)
+        {
+            for (auto val : x.second)
+            {
+                v.push_back(val);
+            }
+        }
+        ans.push_back(v);
     }
 
     return ans;
