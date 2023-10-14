@@ -3,37 +3,42 @@
 
 int size = 0;
 
+void swap(int *x, int *y);
 int Root() { return 1; }
 int parent(int i) { return i / 2; }
 int leftChild(int i) { return 2 * i; }
 int rightChild(int i) { return 2 * i + 1; }
 int hasParent(int i) { return i != Root(); }
 int isValidNode(int i) { return i <= size; }
-void swap(int *x, int *y);
-void shiftDown(int H[], int idx);
 void pop(int H[]);
 int front(int H[]);
+void shiftDown(int H[], int idx);
 
-void heapSort(int arr[], int n) // array is 1-based
+void printKLargest(int arr[], int n, int k) // O(N + KlogN)
 {
+    // O(N): Create Max Heap of N elements
+    int *maxHeap = (int *)malloc((n + 1) * sizeof(int));
+
     int i;
-    // Build Max Heap
+    for (i = 0; i < n; i++)
+        maxHeap[i + 1] = arr[i];
+
     size = n;
     for (i = size / 2; i >= 1; i--)
-        shiftDown(arr, i);
-
-    // Pop N times
-    int lastIdx, lastElem;
-    while (size > 0)
-    {
-        lastIdx = size;
-        lastElem = front(arr);
-        pop(arr);
-        arr[lastIdx] = lastElem;
+        shiftDown(maxHeap, i);
+    
+    // O(KlogN): Pop k times
+    while(k--){
+        printf("%d ",front(maxHeap));
+        pop(maxHeap);
     }
+}
 
-    // TC: O(NlogN)
-    // SC: O(1)
+void swap(int *x, int *y)
+{
+    int tmp = *x;
+    *x = *y;
+    *y = tmp;
 }
 
 int front(int H[])
@@ -60,16 +65,9 @@ void shiftDown(int H[], int idx)
             swap(&H[idx], &H[child]);
         else
             break;
-        
+
         idx = child;
     }
-}
-
-void swap(int *x, int *y)
-{
-    int tmp = *x;
-    *x = *y;
-    *y = tmp;
 }
 
 void pop(int H[])
@@ -82,4 +80,10 @@ void pop(int H[])
 
     H[Root()] = H[size--];
     shiftDown(H, Root());
+}
+
+int main()
+{
+    int arr[] = {12, 5, 787, 1, 23, 11, 7, 787};
+    printKLargest(arr, 8, 4);
 }
