@@ -213,3 +213,18 @@ node *LCA(node *root, node *p, node *q) // Lowest Common Ancestor
 
     return curr;
 }
+
+node *buildBalancedBST(int arr[], int lo, int hi) // arr is Sorted
+{
+    if (lo > hi)
+        return NULL;
+
+    int mid = (lo + hi) / 2;
+
+    node *root = newNode(arr[mid]);
+
+    root->left = buildBalancedBST(arr, lo, mid - 1);
+    root->right = buildBalancedBST(arr, mid + 1, hi);
+
+    return root;
+}
