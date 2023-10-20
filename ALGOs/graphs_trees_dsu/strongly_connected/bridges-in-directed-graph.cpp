@@ -1,19 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 const int INF = 1e9;
-// Find out strongly connected components in a directed graph
+// Bridge: An edge in directed graph that connects 2 different SCC
 
 const int N = 1e5 + 10;
 const int UNVISITED = -1;
 vector<int> graph[N];
 vector<int> ids(N, UNVISITED);
-vector<int> lo(N, INF); // Low-Link Value of a node: smallest id reachable from that node (including itself) in a DFS traversal
+vector<int> lo(N, INF);
 vector<bool> onStack(N, false);
-int id = 1;
+vector<pair<int, int>> bridges;
 
-// Low-link values depend highly on how the traversal is carried out, but SCCs of a graph are unique
-// Tarjan's Algo maintains a stack on valid nodes from which to update low-link values from
-// Result: All nodes belonging to a SCC have same low-link value, which is different from any node of any other SCC
+int id = 1;
 
 void dfs(int v, stack<int> &st)
 {
@@ -26,11 +24,15 @@ void dfs(int v, stack<int> &st)
         if (ids[child] == UNVISITED)
             dfs(child, st);
 
-        if (onStack[child]) // min low-link on callback
+        if (onStack[child])
+        {
             lo[v] = min(lo[v], lo[child]);
+        }
+        else
+            bridges.push_back({v, child}); // Bridge
     }
 
-    if (ids[v] == lo[v]) // Marks the start of SCC
+    if (ids[v] == lo[v])
     {
         while (!st.empty())
         {
