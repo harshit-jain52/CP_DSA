@@ -264,3 +264,37 @@ vector<vector<int>> verticalOrder(node *root)
 
     return ans;
 }
+
+vector<vector<int>> diagonalTraversal(node *root)
+{
+    vector<vector<int>> ans;
+    if (root == NULL)
+        return ans;
+
+    node *curr = root;
+    queue<node *> q;
+    q.push(curr);
+
+    while (!q.empty())
+    {
+        int sz = q.size();
+        vector<int> v;
+
+        while (sz--)
+        {
+            curr = q.front();
+            q.pop();
+
+            while (curr)
+            {
+                v.push_back(curr->data);
+                if (curr->left)
+                    q.push(curr->left);
+                curr = curr->right;
+            }
+        }
+        ans.push_back(v);
+    }
+
+    return ans;
+}
