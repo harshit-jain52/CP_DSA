@@ -15,6 +15,7 @@ typedef struct graph
     int vnum;
     node **adjList;
     int *taken;
+    int *posInHeap;
 } graph;
 
 node *createNode(int val, int wt);
@@ -44,12 +45,14 @@ int rightChild(int i) { return 2 * i + 1; }
 int hasParent(int i) { return i != Root(); }
 int isValidNode(int i) { return i <= size; }
 pair front(pair H[]) { return H[Root()]; }
-void shiftUp(pair H[], int idx);
-void shiftDown(pair H[], int idx);
-void push(pair H[], pair newPair);
-void pop(pair H[]);
+void shiftUp(pair H[], int idx, graph *g);
+void shiftDown(pair H[], int idx, graph *g);
+void pop(pair H[], graph *g);
+void changePriority(pair H[], pair changePair, graph *g);
 
 // Prim's Algorithm to find MST
+const int INF = 1e9;
+
 void process(int v, graph *g, pair *pq)
 {
     g->taken[v] = 1;
@@ -63,18 +66,25 @@ void process(int v, graph *g, pair *pq)
         wt = trav->weight;
 
         if (g->taken[child_v] == 0)
-            push(pq, (pair){child_v, wt});
+            changePriority(pq, (pair){child_v, wt}, g);
 
         trav = trav->next;
     }
 }
 
-int prim(graph *g, int m)
+int prim(graph *g, int n)
 {
     int mst_cost = 0;
-    pair *pq = (pair *)malloc((m) * sizeof(pair));
-    size = 0;
-    process(1, g, pq);
+    pair *pq = (pair *)malloc((n + 1) * sizeof(pair));
+
+    pq[1] = (pair){1, 0};
+    g->posInHeap[1] = 1;
+    for (int i = 2; i <= n; i++)
+    {
+        pq[i] = (pair){i, INF};
+        g->posInHeap[i] = i;
+    }
+    size = n;
 
     pair tmp;
     int v, wt;
@@ -83,15 +93,16 @@ int prim(graph *g, int m)
     {
         tmp = front(pq);
         v = tmp.vertex, wt = tmp.w;
-        pop(pq);
+        pop(pq, g);
+        
+        if (wt == INF)
+            break;
 
-        if (g->taken[v] == 0)
-        {
-            mst_cost += wt;
-            process(v, g, pq);
-        }
+        mst_cost += wt;
+        process(v, g, pq);
     }
 
+    free(pq);
     return mst_cost;
 }
 
@@ -111,7 +122,7 @@ int main()
         addEdge(g, y, x, wt);
     }
 
-    int mst_cost = prim(g, m);
+    int mst_cost = prim(g, n);
 
     for (i = 1; i <= n; i++)
     {
@@ -142,12 +153,14 @@ graph *createGraph(int vertices)
     g->vnum = vertices;
     g->adjList = (node **)malloc((vertices + 1) * sizeof(node *));
     g->taken = (int *)malloc((vertices + 1) * sizeof(int));
+    g->posInHeap = (int *)malloc((vertices + 1) * sizeof(int));
 
     int i;
     for (i = 1; i <= vertices; i++)
     {
         g->adjList[i] = NULL;
         g->taken[i] = 0;
+        g->posInHeap[i] = 0;
     }
 
     return g;
@@ -160,16 +173,18 @@ void addEdge(graph *g, int src, int dest, int weight)
     g->adjList[src] = newNode;
 }
 
-void shiftUp(pair H[], int idx)
+void shiftUp(pair H[], int idx, graph *g)
 {
     while (hasParent(idx) && (H[parent(idx)].w > H[idx].w))
     {
         swap(&H[parent(idx)], &H[idx]);
+        g->posInHeap[H[idx].vertex] = idx;
+        g->posInHeap[H[parent(idx)].vertex] = parent(idx);
         idx = parent(idx);
     }
 }
 
-void shiftDown(pair H[], int idx)
+void shiftDown(pair H[], int idx, graph *g)
 {
     while (isValidNode(leftChild(idx)))
     {
@@ -179,7 +194,11 @@ void shiftDown(pair H[], int idx)
             child = rightChild(idx);
 
         if (H[idx].w > H[child].w)
+        {
             swap(&H[idx], &H[child]);
+            g->posInHeap[H[idx].vertex] = idx;
+            g->posInHeap[H[child].vertex] = child;
+        }
         else
             break;
 
@@ -187,14 +206,22 @@ void shiftDown(pair H[], int idx)
     }
 }
 
-void push(pair H[], pair newPair)
-{
-    H[++size] = newPair;
-    shiftUp(H, size);
-}
-
-void pop(pair H[])
+void pop(pair H[], graph *g)
 {
     H[Root()] = H[size--];
-    shiftDown(H, Root());
+    g->posInHeap[H[Root()].vertex] = Root();
+    shiftDown(H, Root(), g);
+}
+
+void changePriority(pair H[], pair changePair, graph *g)
+{
+    int v = changePair.vertex;
+    int newP = changePair.w;
+    int idx = g->posInHeap[v];
+
+    if (H[idx].w <= newP)
+        return;
+
+    H[idx].w = newP;
+    shiftUp(H, idx, g);
 }
