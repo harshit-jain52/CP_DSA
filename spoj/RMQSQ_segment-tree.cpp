@@ -56,3 +56,5 @@ int main()
         cout << query(0, 0, n - 1, l, r) << endl;
     }
 }
+
+// O(NlogN) + O(QlogN)
