@@ -81,6 +81,6 @@ int main()
         cin >> k >> x;
 
         point_update(0, 0, n - 1, k - 1, x);
-        cout << maxSubarraySum[0] << endl;
+        cout << max(0LL, maxSubarraySum[0]) << endl;
     }
 }
