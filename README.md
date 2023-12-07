@@ -13,7 +13,7 @@ Handles:
 - [Linkedin](https://www.linkedin.com/in/harshit-jain-4081a0256/)
 
 Resources:
-- [Codeforces C2Ladder](https://c2-ladders.com/)
+- [Codeforces ACDLadders](https://www.acodedaily.com/)
 - [Atcoder DP Tasks](https://atcoder.jp/contests/dp/tasks)
 - [Leetcode DSA Sheet](https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/)
 - [CSES Problem Set](https://cses.fi/problemset/)
