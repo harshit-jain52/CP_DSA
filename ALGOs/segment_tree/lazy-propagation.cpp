@@ -24,6 +24,7 @@ void build(int idx, int lo, int hi) // O(N)
     if (lo == hi)
     {
         tree[idx] = arr[lo];
+        return;
     }
 
     int mid = (lo + hi) / 2;
@@ -100,5 +101,5 @@ ll range_query(int idx, int lo, int hi, int l, int r) // O(logN)
         return tree[idx];
 
     int mid = (lo + hi) / 2;
-    return range_query(2 * idx + 1, lo, mid, l, r) + range_query(2 * idx + 1, mid + 1, hi, l, r);
+    return range_query(2 * idx + 1, lo, mid, l, r) + range_query(2 * idx + 2, mid + 1, hi, l, r);
 }
