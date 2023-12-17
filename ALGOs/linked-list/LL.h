@@ -79,7 +79,7 @@ Node *deleteHead(Node *head) // O(1);
     Node *tmp = head;
     head = head->next;
     free(tmp);
-    
+
     return head;
 }
 
@@ -241,4 +241,101 @@ Node *insertValue(Node *head, int el, int val) // insert el before val; O(N)
     }
 
     return head;
+}
+
+Node *findMiddleNode(Node *head) // Tortoise-Hare Method
+{
+    Node *fastptr = head;
+    Node *slowptr = head;
+
+    while (fastptr && fastptr->next)
+    {
+        slowptr = slowptr->next;
+        fastptr = fastptr->next->next;
+    }
+
+    return slowptr;
+}
+
+int detectLoop(Node *head)
+{
+    Node *fastptr = head;
+    Node *slowptr = head;
+
+    while (fastptr && fastptr->next)
+    {
+        slowptr = slowptr->next;
+        fastptr = fastptr->next->next;
+
+        if (slowptr == fastptr)
+            return 1;
+    }
+
+    return 0;
+}
+
+Node *startingNodeOfLoop(Node *head)
+{
+    int loopFound = 0;
+
+    Node *fastptr = head;
+    Node *slowptr = head;
+
+    while (fastptr && fastptr->next)
+    {
+        slowptr = slowptr->next;
+        fastptr = fastptr->next->next;
+
+        if (slowptr == fastptr)
+        {
+            loopFound = 1;
+            break;
+        }
+    }
+
+    if (!loopFound)
+        return NULL;
+
+    slowptr = head;
+
+    while (slowptr != fastptr)
+    {
+        slowptr = slowptr->next;
+        fastptr = fastptr->next;
+    }
+
+    return slowptr;
+}
+
+int lengthOfLoop(Node *head)
+{
+    int loopFound = 0;
+
+    Node *fastptr = head;
+    Node *slowptr = head;
+
+    while (fastptr && fastptr->next)
+    {
+        slowptr = slowptr->next;
+        fastptr = fastptr->next->next;
+
+        if (slowptr == fastptr)
+        {
+            loopFound = 1;
+            break;
+        }
+    }
+
+    if (!loopFound)
+        return 0;
+
+    int len = 1;
+    fastptr = fastptr->next;
+    while (fastptr != slowptr)
+    {
+        len++;
+        fastptr = fastptr->next;
+    }
+
+    return len;
 }
