@@ -339,3 +339,32 @@ int lengthOfLoop(Node *head)
 
     return len;
 }
+
+Node *reverseLLIterative(Node *head)
+{
+    Node *prev = NULL;
+    Node *mover = head;
+
+    while (mover)
+    {
+        Node *front = mover->next;
+        mover->next = prev;
+        prev = mover;
+        mover = front;
+    }
+
+    return prev;
+}
+
+Node *reverseLLRecursive(Node *head)
+{
+    if (head == NULL || head->next == NULL)
+        return head;
+
+    Node *front = head->next;
+    Node *newHead = reverseLLRecursive(front);
+    front->next = head;
+    head->next = NULL;
+
+    return newHead;
+}
