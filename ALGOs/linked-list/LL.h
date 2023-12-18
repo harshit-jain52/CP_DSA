@@ -340,6 +340,53 @@ int lengthOfLoop(Node *head)
     return len;
 }
 
+Node *deleteKthNodeFromEnd(Node *head, int k) // 1<=k<=N
+{
+    Node *fastptr = head;
+    int steps = k;
+    while (steps--)
+        fastptr = fastptr->next;
+
+    if (fastptr == NULL)
+    {
+        Node *newHead = head->next;
+        free(head);
+        return newHead;
+    }
+
+    Node *slowptr = head;
+    while (fastptr->next)
+    {
+        fastptr = fastptr->next;
+        slowptr = slowptr->next;
+    }
+
+    Node *tmp = slowptr->next;
+    slowptr->next = tmp->next;
+    free(tmp);
+    return head;
+}
+
+Node *deleteMiddleNode(Node *head)
+{
+    if (head == NULL || head->next == NULL)
+        return NULL;
+
+    Node *fastptr = head->next->next;
+    Node *slowptr = head;
+
+    while (fastptr && fastptr->next)
+    {
+        slowptr = slowptr->next;
+        fastptr = fastptr->next->next;
+    }
+
+    Node *tmp = slowptr->next;
+    slowptr->next = tmp->next;
+    free(tmp);
+    return head;
+}
+
 Node *reverseLLIterative(Node *head)
 {
     Node *prev = NULL;
@@ -365,6 +412,49 @@ Node *reverseLLRecursive(Node *head)
     Node *newHead = reverseLLRecursive(front);
     front->next = head;
     head->next = NULL;
+
+    return newHead;
+}
+
+Node *SortLL012(Node *head)
+{
+    if (head == NULL || head->next == NULL)
+        return head;
+
+    Node *zeroHead = makeNode(-1), *oneHead = makeNode(-1), *twoHead = makeNode(-1); // dummy HEADS
+    Node *zero = zeroHead, *one = oneHead, *two = twoHead;
+
+    Node *mover = head;
+    while (mover)
+    {
+        if (mover->data == 0)
+        {
+            zero->next = mover;
+            zero = zero->next;
+        }
+        else if (mover->data == 1)
+        {
+            one->next = mover;
+            one = one->next;
+        }
+        else
+        {
+            two->next = mover;
+            two = two->next;
+        }
+
+        mover = mover->next;
+    }
+
+    zero->next = (oneHead->next) ? oneHead->next : twoHead->next;
+    one->next = twoHead->next;
+    two->next = NULL;
+
+    Node *newHead = zeroHead->next;
+
+    free(zeroHead);
+    free(oneHead);
+    free(twoHead);
 
     return newHead;
 }
