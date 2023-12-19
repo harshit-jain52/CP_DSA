@@ -227,3 +227,30 @@ Node *reverseDLL(Node *head)
 
     // return back->prev;
 }
+
+Node *deleteAllOccurences(Node *head, int el)
+{
+    Node *tmp = head;
+
+    while (tmp)
+    {
+        Node *back = tmp->prev;
+        Node *front = tmp->next;
+
+        if (tmp->data == el)
+        {
+            if (back)
+                back->next = front;
+            else
+                head = front;
+
+            if (front)
+                front->prev = back;
+
+            free(tmp);
+        }
+        tmp = front;
+    }
+
+    return head;
+}

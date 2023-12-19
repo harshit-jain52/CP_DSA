@@ -458,3 +458,28 @@ Node *SortLL012(Node *head)
 
     return newHead;
 }
+
+Node *findCollisionPointYLL(Node *head1, Node *head2)
+{
+    if (head1 == NULL || head2 == NULL)
+        return NULL;
+
+    Node *tmp1 = head1;
+    Node *tmp2 = head2;
+
+    while (tmp1 != tmp2)
+    {
+        tmp1 = tmp1->next;
+        tmp2 = tmp2->next;
+
+        if (tmp1 == tmp2)
+            return tmp1;
+
+        if (tmp1 == NULL)
+            tmp1 = head2;
+        if (tmp2 == NULL)
+            tmp2 = head1;
+    }
+
+    return tmp1;
+}
