@@ -1,69 +1,76 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define endl '\n'
+#define FASTIO                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(NULL);                    \
+    cout.tie(NULL);
 typedef long long ll;
 const int M = 1e9 + 7;
 
-ll func(ll a[], int k, int idx, ll upper)
+bool check(ll target, int a[], int n, int k)
 {
-    int i = idx;
-    ll ans = upper;
-    while (a[i] <= ans && i >= 0)
+    ll minmoves = INT_MAX;
+    for (int i = 0; i < n - 1; i++)
     {
-        ll diff = ans - a[i];
-        if (diff + 1 > k)
-            break;
-
-        ans = a[i] + diff + 1;
-        k = k - (diff + 1);
-        i--;
+        if (a[i] >= target)
+            return true;
+        int idx = -1;
+        for (int j = i + 1; j < n; j++)
+        {
+            if (a[j] >= target - (j - i))
+            {
+                idx = j;
+                break;
+            }
+        }
+        if (idx == -1)
+            continue;
+        ll moves = 0;
+        for (int j = idx - 1; j >= i; j--)
+        {
+            moves += target - (j - i) - a[j];
+        }
+        minmoves = min(minmoves, moves);
     }
-    return ans;
+
+    return minmoves <= k;
+}
+
+void solve()
+{
+    int n, k;
+    cin >> n >> k;
+    int a[n];
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+
+    ll lo = *max_element(a, a + n), hi = 1e16 + 1, mid;
+    while (hi - lo > 1)
+    {
+        mid = (lo + hi) / 2;
+
+        if (check(mid, a, n, k))
+            lo = mid;
+        else
+            hi = mid - 1;
+    }
+
+    if (check(hi, a, n, k))
+        cout << hi;
+    else
+        cout << lo;
+
+    cout << endl;
 }
 
 int main()
 {
+    FASTIO
     int t;
     cin >> t;
     while (t--)
     {
-        int n, k;
-        cin >> n >> k;
-        ll a[n], maxelem = 0;
-        for (int i = 0; i < n; i++)
-        {
-            cin >> a[i];
-            maxelem = max(maxelem, a[i]);
-        }
-
-        ll ans = 0;
-        for (int i = n - 2; i >= 0; i--)
-        {
-            if (a[i + 1] == maxelem)
-            {
-                ans = max(ans, func(a, k, i, maxelem));
-            }
-        }
-
-        for (int i = 0; i < n; i++)
-        {
-            if (a[i] == maxelem)
-            {
-                for (int j = i + 1; j < n - 2; j++)
-                {
-                    if (a[j + 1] <= a[j] && a[j] <= a[j + 2])
-                    {
-                        int diff = a[j] - a[j + 1];
-                        if (k >= diff)
-                        {
-                            ans = max(ans, func(a, k - diff, j, a[j]));
-                        }
-                        break;
-                    }
-                }
-            }
-        }
-
-        cout << ans << endl;
+        solve();
     }
 }
