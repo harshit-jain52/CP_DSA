@@ -10,7 +10,7 @@ typedef struct node
 
 Node *makeNode(int data)
 {
-    Node *newNode = (Node *)malloc(sizeof(Node *));
+    Node *newNode = (Node *)malloc(sizeof(Node));
     newNode->data = data;
     newNode->next = NULL;
     newNode->prev = NULL;
