@@ -6,13 +6,14 @@ using namespace std;
 	cin.tie(NULL);                    \
 	cout.tie(NULL);
 typedef long long ll;
+typedef pair<int, int> ii;
 const int M = 1e9 + 7;
 const int N = 2e5 + 5;
 
 vector<int> graph[N];
 int A[N];
 int dp[N];
-vector<bool> canReach(N, false);
+vector<int> canReach(N, -1);
 
 int parent[N];
 int set_size[N];
@@ -44,16 +45,18 @@ void unionBySize(int a, int b)
 	}
 }
 
-void revdfs(int v)
+bool reachdfs(int v, int n)
 {
-	canReach[v] = true;
-	for (int prev : graph[v])
-	{
-		if (canReach[prev])
-			continue;
-		if (A[prev] < A[v])
-			revdfs(prev);
-	}
+	if (v == n)
+		return true;
+	if (canReach[v] != -1)
+		return canReach[v];
+
+	bool ans = false;
+	for (int next : graph[v])
+		ans |= reachdfs(next, n);
+
+	return canReach[v] = ans;
 }
 
 int dfs(int v, int n)
@@ -61,15 +64,13 @@ int dfs(int v, int n)
 	if (v == n)
 		return 1;
 
-	int ans = 0;
 	if (dp[v] != -1)
 		return dp[v];
 
+	int ans = 0;
 	for (int next : graph[v])
 	{
-		if (A[next] < A[v])
-			continue;
-		if (canReach[next])
+		if (reachdfs(next, n))
 			ans = max(ans, 1 + dfs(next, n));
 	}
 
@@ -89,12 +90,12 @@ int main()
 		make(i);
 	}
 
-	vector<pair<int, int>> edges;
+	vector<ii> edges;
 	while (m--)
 	{
 		int u, v;
 		cin >> u >> v;
-		edges.push_back({u, v});
+		edges.push_back((ii){u, v});
 		if (A[u] == A[v])
 			unionBySize(u, v);
 	}
@@ -106,11 +107,12 @@ int main()
 
 		if (u == v)
 			continue;
-		graph[u].push_back(v);
-		graph[v].push_back(u);
+
+		if (A[u] < A[v])
+			graph[u].push_back(v);
+		else
+			graph[v].push_back(u);
 	}
 
-	revdfs(n);
-	
-	cout << dfs(1, n);
+	cout << dfs(find(1), find(n));
 }
