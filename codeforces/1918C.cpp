@@ -32,7 +32,7 @@ void solve()
 		ll pow = 1LL << i;
 		if ((pow & a) == (pow & b))
 			continue;
-		if ((a & pow) && num + pow < r)
+		if ((a & pow) && num + pow <= r)
 			num += pow;
 	}
 
