@@ -12,7 +12,7 @@ void solve()
 {
 	ll m, n;
 	cin >> n >> m;
-	ll x = m ^ n;
+	ll x = n ^ m;
 
 	if (x < n)
 	{
@@ -21,35 +21,40 @@ void solve()
 		return;
 	}
 
-	vector<ll> v;
-	v.push_back(n);
-
+	int found1 = -1, found2 = -1;
 	for (int i = 62; i >= 0; i--)
 	{
 		x = (1LL << i);
-		if ((bool)(x & m) == (bool)(x & n))
-			continue;
-
 		if ((bool)(x & n))
 		{
-			n = n ^ x;
-			if (n == m)
-				break;
-
-			v.push_back(n);
-
-			if (n < m)
+			if (found1 == -1)
 			{
-				cout << -1 << endl;
-				return;
+				found1 = i;
+				continue;
 			}
+			else
+			{
+				found2 = i;
+				break;
+			}
+		}
+		if ((bool)(x & m))
+		{
+			cout << -1 << endl;
+			return;
 		}
 	}
 
-	cout << v.size() << endl;
-	for (auto it : v)
-		cout << it << " ";
-	cout << m << endl;
+	ll num = (1LL << found1);
+	for (int i = found2 - 1; i >= 0; i--)
+	{
+		x = (1LL << i);
+		if ((bool)(x & m) != (bool)(x & n))
+			num += x;
+	}
+
+	cout << 2 << endl;
+	cout << n << " " << (n ^ num) << " " << m << endl;
 }
 
 int main()
