@@ -1,10 +1,12 @@
 # CP_DSA
-Handles:
+
+### Handles:
+
 - [Codeforces](https://codeforces.com/profile/harshit_jain52)
 - [CSES](https://cses.fi/user/163510)
+- [atcoder](https://atcoder.jp/users/harshit_jain52)
 - [Leetcode](https://leetcode.com/harshit_jain52/)
 - [HackerRank](https://www.hackerrank.com/harshitjain0502?hr_r=1)
-- [atcoder](https://atcoder.jp/users/harshit_jain52)
 - [HackerEarth](https://www.hackerearth.com/@harshitjain0502)
 - [SPOJ](https://www.spoj.com/users/harshit_jain52/)
 - [Codechef](https://www.codechef.com/users/harshit_jain52)
@@ -12,7 +14,8 @@ Handles:
 - [GeeksForGeeks](https://auth.geeksforgeeks.org/user/harshit_jain52)
 - [Linkedin](https://www.linkedin.com/in/harshit-jain-4081a0256/)
 
-Resources:
+### Resources:
+
 - [Codeforces ACDLadders](https://www.acodedaily.com/)
 - [Atcoder DP Tasks](https://atcoder.jp/contests/dp/tasks)
 - [Leetcode DSA Sheet](https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/)
@@ -22,3 +25,4 @@ Resources:
 - [USACO Guide](https://usaco.guide/)
 - [CP Handbook](https://cses.fi/book/book.pdf)
 - [CP Algorithms](https://cp-algorithms.com/)
+- [CList](https://clist.by/)
