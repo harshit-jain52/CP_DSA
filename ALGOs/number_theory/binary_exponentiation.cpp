@@ -20,7 +20,7 @@ int binExpRecur(int a, int b)
     if (b % 2 == 0)
         return (res * 1LL * res) % M;
     else
-        return (a * (res * 1LL * res) % M) % M;
+        return (a * 1LL * ((res * 1LL * res) % M) % M);
 }
 
 // Iterative Method
@@ -61,7 +61,7 @@ Handle Large Exponentiation
 
     *ETF = Euler Totient Function
         ETF(N) = no. of positive integers < N coprime with N
-         = N * product of all distinct (1-1/p) where p is prime factor of N 
+         = N * product of all distinct (1-1/p) where p is prime factor of N
         if N is prime, ETF(N) = 1-N (obviously)
 */
 
