@@ -13,7 +13,7 @@ void solve()
 	int l, r;
 	cin >> l >> r;
 	int len = r - l + 1;
-	if (__gcd(l, r) != 1 && len % 2 == 1)
+	if (l % 2 == 0 && len % 2 == 1)
 	{
 		cout << -1 << endl;
 		return;
@@ -21,21 +21,16 @@ void solve()
 
 	if (len % 2 == 1)
 	{
-		for (int i = l + 1; i <= r; i++)
-			cout << i << " ";
-		cout << l << endl;
+		cout << l + 1 << " " << l + 2 << " " << l << " ";
+		for (int i = 3; i < len; i += 2)
+			cout << l + i + 1 << " " << l + i << " ";
 	}
 	else
 	{
-		for (int i = 0; i < len; i++)
-		{
-			if (i % 2 == 1)
-				cout << l + i - 1 << " ";
-			else
-				cout << l + i + 1 << " ";
-		}
-		cout << endl;
+		for (int i = 0; i < len; i += 2)
+			cout << l + i + 1 << " " << l + i << " ";
 	}
+	cout << endl;
 }
 
 int main()

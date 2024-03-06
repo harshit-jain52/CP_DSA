@@ -37,7 +37,7 @@ int binExp(int a, int b)
 	if (b % 2 == 0)
 		return (res * 1LL * res) % M;
 	else
-		return (a * (res * 1LL * res) % M) % M;
+		return (a * 1LL * ((res * 1LL * res) % M) % M);
 }
 
 void solve()
@@ -58,6 +58,8 @@ void solve()
 		if (ct)
 			v.push_back(ct);
 	}
+	if (x != 1)
+		v.push_back(1);
 
 	int ans = 0;
 	for (int i = 1; i <= n; i++)
