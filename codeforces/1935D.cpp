@@ -18,7 +18,7 @@ void solve()
 		cin >> s[i];
 
 	int odd[n + 1], even[n + 1];
-	odd[0] = even[0] = 1;
+	odd[0] = even[0] = 0;
 
 	for (int i = 1; i <= n; i++)
 	{
@@ -32,9 +32,9 @@ void solve()
 		ct -= (c + 1 - s[i]);
 		ct -= (s[i] / 2 + 1);
 		if (s[i] % 2 == 0)
-			ct += even[i] - 1;
+			ct += even[i];
 		else
-			ct += odd[i] - 1;
+			ct += odd[i];
 	}
 
 	cout << ct << endl;
