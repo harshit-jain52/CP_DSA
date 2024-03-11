@@ -24,7 +24,7 @@ bool solve()
 		if (a[i] < 0 || a[i + 1] < 0)
 			return false;
 	}
-	return (a[n - 1] == 0);
+	return (a[n - 1] == 0 && a[n - 2] == 0);
 }
 
 int main()
