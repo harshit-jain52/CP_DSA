@@ -23,16 +23,15 @@ int binExpRecur(int a, int b)
         return (a * 1LL * ((res * 1LL * res) % M) % M);
 }
 
-// Iterative Method
+// Iterative Method [Faster than recursive]
 int binExpIter(int a, int b)
 {
     int ans = 1;
     while (b)
     {
         if (b & 1)
-        {
             ans = (ans * 1LL * a) % M;
-        }
+
         a = (a * 1LL * a) % M;
         b = b >> 1;
     }
@@ -54,8 +53,8 @@ Handle Large Exponentiation
 - if b <= 10^18
     solution: pass long long b
 
-- if b is given very large (an exponential value)
-    e.g. if we are told to calculate a^(b^c) % M
+- if b is given very large (an exponential value p^q)
+    e.g. if we are told to calculate a^(p^q) % M
     solution: a^b % M = a^(b%ETF(M)) % M  [Euler's Theorem]
         if M is prime, a^(b%(M-1)) % M
 
@@ -86,15 +85,10 @@ ll binExpLarge(ll a, ll b)
     while (b)
     {
         if (b & 1)
-        {
             ans = binMultiply(ans, a);
-        }
+
         a = binMultiply(a, a);
         b = b >> 1;
     }
     return ans;
-}
-
-int main()
-{
 }
