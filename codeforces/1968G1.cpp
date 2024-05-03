@@ -8,36 +8,53 @@ using namespace std;
 typedef long long ll;
 const int M = 1e9 + 7;
 
-bool canDivide(int lcp, int k, string &s)
+vector<int> z_function(string &s)
 {
-	int curr = 0;
-	int ct = 1;
+	/*
+	The Z-function for this string is an array of length n where the i-th element is equal to the greatest number of characters
+	starting from the position i that coincide with the first characters of s.
+	z[i] is the length of the longest string that is, at the same time, a prefix of s and a prefix of the suffix of s starting at i.
+	*/
+
 	int n = s.size();
-	bool fin;
+	vector<int> z(n, 0);
+
+	int l = 0, r = 0;
+
+	// [l,r) indices of the rightmost segment match (substring coinciding with prefix of s)
+
+	for (int i = 1; i < n; i++)
+	{
+		if (i < r)
+			z[i] = min(r - i, z[i - l]);
+
+		while (i + z[i] < n && s[z[i]] == s[i + z[i]])
+			z[i]++;
+
+		if (i + z[i] > r)
+		{
+			l = i;
+			r = i + z[i];
+		}
+	}
+
+	return z;
+}
+
+bool canDivide(int lcp, int k, vector<int> &z)
+{
+	int ct = 1;
+	int n = z.size();
+
 	for (int i = lcp; i < n;)
 	{
-		while (i < n && s[i] != s[0])
-			i++;
-		fin = false;
-		for (int j = i; j < min(n, i + lcp); j++)
+		if (z[i] >= lcp)
 		{
-			if (s[j] != s[curr])
-			{
-				break;
-			}
-
-			curr++;
-			if (curr == lcp)
-			{
-				ct++;
-				i += lcp;
-				fin = true;
-				break;
-			}
+			ct++;
+			i += lcp;
 		}
-		if (!fin)
+		else
 			i++;
-		curr = 0;
 	}
 
 	return (ct >= k);
@@ -50,21 +67,18 @@ void solve()
 	string s;
 	cin >> s;
 
-	int lo = 0, hi = n, mid;
+	vector<int> z = z_function(s);
+	int lo = 0, hi = n + 1;
 
 	while (hi - lo > 1)
 	{
-		mid = (lo + hi) / 2;
-		if (canDivide(mid, l, s))
+		int mid = (lo + hi) / 2;
+		if (canDivide(mid, l, z))
 			lo = mid;
 		else
-			hi = mid - 1;
+			hi = mid;
 	}
-	if (canDivide(hi, l, s))
-		cout << hi;
-	else
-		cout << lo;
-	cout << endl;
+	cout << lo << endl;
 }
 
 int main()
