@@ -84,6 +84,7 @@ int nCr(int n, int r)
 
 // Lucas Theorem: nCr % p = (n%p)C(r%p) * (n/p)C(r/p) % p
 // for large N, small prime p
+// result: x & y = y <==> xCy is odd
 
 // Hockey Stick Identity: (n+1)C(k+1) = kCk + (k+1)Ck + (k+2)Ck + ... + nCk
 
@@ -91,4 +92,6 @@ int nCr(int n, int r)
 // sum of (nCi)^2 for i=0 to n -> 2nCn
 
 // x1 + x2 + x3 + ... + xn = r
-// no. of non-negative integral solutions: (n+r-1)C(r)
+// no. of non-negative integral solutions: (n + r - 1)C(n - 1)
+// if xi >= a, then no. of solutions: (n + r - n*a - 1)C(n - 1)
+// if 0 <= xi <= m < r, then no. of solutions: sum over j=0 to n: (-1)^j * (nCj) * (n + r - 1 - j*m)C(n - 1)

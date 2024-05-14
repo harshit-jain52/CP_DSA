@@ -203,3 +203,21 @@ vector<int> eulerTotient() // O(NloglogN)
 // 1. phi(p) = p - 1, where p is prime
 // 2. phi(p^k) = p^k - p^(k - 1), where p is prime
 // 3. phi(a * b) = phi(a) * phi(b), if gcd(a, b) = 1
+
+// Farey sequence of N is the increasing sequence of fractions a/b such that 0<=(a/b)<=1,b<=N and gcd(a, b) = 1
+// Find Rank of a/b in Farey sequence of N, N <= 1e5
+int findRank(ll n, ll a, ll b)
+{
+    ll rank = 0, arr[n + 1];
+
+    for (ll i = 1; i <= n; i++)
+        arr[i] = (a * i) / b;
+
+    for (ll i = 1; i <= n; i++)
+    {
+        for (ll j = i * 2; j <= n; j += i)
+            arr[j] -= arr[i];
+        rank += arr[i];
+    }
+    return rank + 1;
+}
