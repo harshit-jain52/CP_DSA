@@ -21,7 +21,7 @@ void create(int n, int m)
 
 void kahn(int n)
 {
-    priority_queue<int> pq;
+    priority_queue<int, vector<int>, greater<int>> pq;
 
     for (int i = 1; i <= n; i++)
     {
