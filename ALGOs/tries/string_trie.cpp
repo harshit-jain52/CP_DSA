@@ -3,7 +3,8 @@ using namespace std;
 
 const int WMAX = 1e6 + 5;
 int trie[WMAX][26];
-bool stop[WMAX];
+int stop[WMAX];
+int pref[WMAX];
 int node_count = 0;
 /*
 A trie is a tree-like data structure that stores strings.
@@ -23,6 +24,7 @@ void insert(string &word)
             trie[node][c - 'a'] = ++node_count;
 
         node = trie[node][c - 'a']; // Move down the path in the trie.
+        pref[node]++;
     }
-    stop[node] = true; // Mark the ending node so we know it's a dictionary word
+    stop[node]++; // Mark the ending node so we know it's a dictionary word
 }
