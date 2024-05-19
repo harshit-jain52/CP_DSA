@@ -22,6 +22,15 @@ builtin_popcountll(x);
 
 // Check if number is odd
 (n & 1)
+
+// Multiply by 2
+(n << 1)
+
+// Divide by 2
+(n >> 1)
+
+// Find the rightmost unset bit
+log2(n ^ (n | (n+1)))
 ```
 
 ### Some expressions

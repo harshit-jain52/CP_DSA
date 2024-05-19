@@ -6,14 +6,14 @@ const int SIZE = 22;
 const int INF = 1e9;
 
 /*
-Travelling Salesman Problem
+Travelling Salesman Problem (Hamiltonian Walk on graph)
 Given a list of n cities and the cost of travelling between each pair of cities,
 what is the cheapest possible route that visits each city exactly once and returns to the origin city (city 1)
 
 1<=n<=20
 */
 
-ll dp[SIZE][1<<SIZE];
+ll dp[SIZE][1 << SIZE];
 
 ll tsp(int idx, int mask, int n, vector<vector<ll>> &cost) // set bit in mask indicates unvisitied city
 {
