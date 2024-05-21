@@ -19,6 +19,19 @@
 - [Atcoder DP Tasks](https://atcoder.jp/contests/dp/tasks)
 - [CList](https://clist.by/)
 
+#### Helpful CF Blogs
+
+- [Difference Arrays (1D & 2D)](https://codeforces.com/blog/entry/86420)
+- [Shortest Path Modelling (Graphs)](https://codeforces.com/blog/entry/45897)
+- [Tree Algorithms (+ Gym Contest)](https://codeforces.com/blog/entry/81527)
+- [Diameter of a Tree](https://codeforces.com/blog/entry/101271)
+- [Tree DP](https://codeforces.com/blog/entry/20935)
+- [Digit DP](https://codeforces.com/blog/entry/53960)
+- [Non-trivial DP Tricks](https://codeforces.com/blog/entry/47764)
+- [Matrix Exponentiation (+ Gym Contest)](https://codeforces.com/blog/entry/80195)
+- [Probability & Expectation](https://codeforces.com/blog/entry/62690)
+- [Meet in the Middle](https://codeforces.com/blog/entry/95571)
+
 ### My Handles:
 
 - [Codeforces](https://codeforces.com/profile/harshit_jain52)
