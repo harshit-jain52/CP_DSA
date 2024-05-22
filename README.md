@@ -31,6 +31,7 @@
 - [Matrix Exponentiation (+ Gym Contest)](https://codeforces.com/blog/entry/80195)
 - [Probability & Expectation](https://codeforces.com/blog/entry/62690)
 - [Meet in the Middle](https://codeforces.com/blog/entry/95571)
+- [Segment Tree Beats](https://codeforces.com/blog/entry/57319)
 
 ### My Handles:
 
