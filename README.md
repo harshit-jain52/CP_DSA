@@ -32,6 +32,7 @@
 - [Probability & Expectation](https://codeforces.com/blog/entry/62690)
 - [Meet in the Middle](https://codeforces.com/blog/entry/95571)
 - [Segment Tree Beats](https://codeforces.com/blog/entry/57319)
+- [Square Root Decomposition](https://codeforces.com/blog/entry/83248)
 
 ### My Handles:
 
