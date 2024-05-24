@@ -22,6 +22,8 @@
 #### Helpful CF Blogs
 
 - [Difference Arrays (1D & 2D)](https://codeforces.com/blog/entry/86420)
+- [Bitwise Operations](https://codeforces.com/blog/entry/73490)
+- [Bitsets](https://codeforces.com/blog/entry/73558)
 - [Shortest Path Modelling (Graphs)](https://codeforces.com/blog/entry/45897)
 - [Tree Algorithms (+ Gym Contest)](https://codeforces.com/blog/entry/81527)
 - [Diameter of a Tree](https://codeforces.com/blog/entry/101271)
