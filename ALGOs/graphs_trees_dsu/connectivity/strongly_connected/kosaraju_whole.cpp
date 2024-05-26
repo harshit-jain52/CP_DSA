@@ -48,7 +48,7 @@ bool isStronglyConnected()
     }
 
     dfs1(1); // Forward DFS from arbitrary vertex
-    // If any of the vertuces is unvisited, return false
+    // If any of the vertices is unvisited, return false
 
     for (int i = 1; i <= n; i++)
     {
@@ -59,7 +59,7 @@ bool isStronglyConnected()
     }
 
     dfs2(1); // Reverse DFS from the same vertex
-    // If any of the vertuces is unvisited, return false
+    // If any of the vertices is unvisited, return false
 
     for (int i = 1; i <= n; i++)
     {

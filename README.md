@@ -21,15 +21,25 @@
 
 #### Helpful CF Blogs
 
-- [Difference Arrays (1D & 2D)](https://codeforces.com/blog/entry/86420)
-- [Bitwise Operations](https://codeforces.com/blog/entry/73490)
-- [Bitsets](https://codeforces.com/blog/entry/73558)
-- [Shortest Path Modelling (Graphs)](https://codeforces.com/blog/entry/45897)
+##### Graphs & Trees
+- [Shortest Path Modelling](https://codeforces.com/blog/entry/45897)
 - [Tree Algorithms (+ Gym Contest)](https://codeforces.com/blog/entry/81527)
 - [Diameter of a Tree](https://codeforces.com/blog/entry/101271)
+- [LCA Problems](https://codeforces.com/blog/entry/43917)
+- [DFS Tree, Articulation Points, Bridges](https://codeforces.com/blog/entry/68138)
+- [Bridge Tree](https://codeforces.com/blog/entry/99259)
+
+##### Dynamic Programming
 - [Tree DP](https://codeforces.com/blog/entry/20935)
 - [Digit DP](https://codeforces.com/blog/entry/53960)
 - [Non-trivial DP Tricks](https://codeforces.com/blog/entry/47764)
+- [Difference Arrays (1D & 2D)](https://codeforces.com/blog/entry/86420)
+
+##### Bit Manipulation
+- [Bitwise Operations](https://codeforces.com/blog/entry/73490)
+- [Bitsets](https://codeforces.com/blog/entry/73558)
+
+##### Miscellaneous
 - [Matrix Exponentiation (+ Gym Contest)](https://codeforces.com/blog/entry/80195)
 - [Probability & Expectation](https://codeforces.com/blog/entry/62690)
 - [Meet in the Middle](https://codeforces.com/blog/entry/95571)
