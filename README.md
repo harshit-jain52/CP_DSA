@@ -8,6 +8,8 @@
 - [CP Algorithms](https://cp-algorithms.com/)
 - [CP Handbook](https://cses.fi/book/book.pdf)
 - [DP Book](https://dp-book.com/Dynamic_Programming.pdf)
+- [Game Theory (Short Article)](https://www.topcoder.com/community/competitive-programming/tutorials/algorithm-games/)
+- [Game Theory (Full Notes)](https://www.cs.cmu.edu/afs/cs/academic/class/15859-f01/www/notes/comb.pdf)
 
 #### Practice:
 
@@ -18,6 +20,7 @@
 - [CF Problem Set](https://codeforces.com/problemset)
 - [Atcoder DP Tasks](https://atcoder.jp/contests/dp/tasks)
 - [CList](https://clist.by/)
+- [5 Days of Game Theory](https://www.hackerrank.com/contests/5-days-of-game-theory/challenges)
 
 #### Helpful CF Blogs
 
@@ -45,6 +48,7 @@
 - [Meet in the Middle](https://codeforces.com/blog/entry/95571)
 - [Segment Tree Beats](https://codeforces.com/blog/entry/57319)
 - [Square Root Decomposition](https://codeforces.com/blog/entry/83248)
+- [Nim Game & Grundy Numbers](https://codeforces.com/blog/entry/66040)
 
 ### My Handles:
 
