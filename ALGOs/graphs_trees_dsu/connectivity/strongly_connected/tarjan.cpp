@@ -24,10 +24,12 @@ void dfs(int v, stack<int> &st)
     for (int child : graph[v])
     {
         if (ids[child] == UNVISITED)
+        {
             dfs(child, st);
-
-        if (onStack[child]) // min low-link on callback
             lo[v] = min(lo[v], lo[child]);
+        }
+        else if (onStack[child]) // min low-link on callback
+            lo[v] = min(lo[v], ids[child]);
     }
 
     if (ids[v] == lo[v]) // Marks the start of SCC
