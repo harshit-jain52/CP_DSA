@@ -19,8 +19,8 @@
 - [AC Problem Set](https://kenkoooo.com/atcoder#/table/)
 - [CF Problem Set](https://codeforces.com/problemset)
 - [Atcoder DP Tasks](https://atcoder.jp/contests/dp/tasks)
-- [CList](https://clist.by/)
 - [5 Days of Game Theory](https://www.hackerrank.com/contests/5-days-of-game-theory/challenges)
+- [CList](https://clist.by/)
 
 #### Helpful CF Blogs
 
