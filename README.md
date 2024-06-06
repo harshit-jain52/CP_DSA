@@ -36,19 +36,20 @@
 - [Tree DP](https://codeforces.com/blog/entry/20935)
 - [Digit DP](https://codeforces.com/blog/entry/53960)
 - [Non-trivial DP Tricks](https://codeforces.com/blog/entry/47764)
-- [Difference Arrays (1D & 2D)](https://codeforces.com/blog/entry/86420)
 
 ##### Bit Manipulation
 - [Bitwise Operations](https://codeforces.com/blog/entry/73490)
 - [Bitsets](https://codeforces.com/blog/entry/73558)
 
 ##### Miscellaneous
+- [Difference Arrays (1D & 2D)](https://codeforces.com/blog/entry/86420)
 - [Matrix Exponentiation (+ Gym Contest)](https://codeforces.com/blog/entry/80195)
 - [Probability & Expectation](https://codeforces.com/blog/entry/62690)
 - [Meet in the Middle](https://codeforces.com/blog/entry/95571)
 - [Segment Tree Beats](https://codeforces.com/blog/entry/57319)
 - [Square Root Decomposition](https://codeforces.com/blog/entry/83248)
 - [Nim Game & Grundy Numbers](https://codeforces.com/blog/entry/66040)
+- [2-SAT](https://codeforces.com/blog/entry/92977)
 
 ### My Handles:
 
