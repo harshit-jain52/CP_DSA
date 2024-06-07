@@ -25,6 +25,7 @@
 #### Helpful CF Blogs
 
 ##### Graphs & Trees
+
 - [Shortest Path Modelling](https://codeforces.com/blog/entry/45897)
 - [Tree Algorithms (+ Gym Contest)](https://codeforces.com/blog/entry/81527)
 - [Diameter of a Tree](https://codeforces.com/blog/entry/101271)
@@ -33,20 +34,28 @@
 - [Bridge Tree](https://codeforces.com/blog/entry/99259)
 
 ##### Dynamic Programming
+
 - [Tree DP](https://codeforces.com/blog/entry/20935)
 - [Digit DP](https://codeforces.com/blog/entry/53960)
 - [Non-trivial DP Tricks](https://codeforces.com/blog/entry/47764)
 
 ##### Bit Manipulation
+
 - [Bitwise Operations](https://codeforces.com/blog/entry/73490)
 - [Bitsets](https://codeforces.com/blog/entry/73558)
 
+##### Data Structures
+
+- [Data Structures](https://codeforces.com/blog/entry/15729)
+- [Segment Trees](https://codeforces.com/blog/entry/15890)
+- [Segment Tree Beats](https://codeforces.com/blog/entry/57319)
+
 ##### Miscellaneous
+
 - [Difference Arrays (1D & 2D)](https://codeforces.com/blog/entry/86420)
 - [Matrix Exponentiation (+ Gym Contest)](https://codeforces.com/blog/entry/80195)
 - [Probability & Expectation](https://codeforces.com/blog/entry/62690)
 - [Meet in the Middle](https://codeforces.com/blog/entry/95571)
-- [Segment Tree Beats](https://codeforces.com/blog/entry/57319)
 - [Square Root Decomposition](https://codeforces.com/blog/entry/83248)
 - [Nim Game & Grundy Numbers](https://codeforces.com/blog/entry/66040)
 - [2-SAT](https://codeforces.com/blog/entry/92977)
