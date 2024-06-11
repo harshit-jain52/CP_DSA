@@ -12,3 +12,5 @@ long andProduct(long a, long b)
     }
     return res;
 }
+
+// https://www.hackerrank.com/challenges/and-product/problem

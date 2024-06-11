@@ -35,3 +35,5 @@ int main()
 
     cout << max;
 }
+
+// https://www.hackerrank.com/challenges/crush/problem
