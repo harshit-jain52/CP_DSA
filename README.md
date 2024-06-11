@@ -17,6 +17,7 @@
 - [Leetcode DSA Sheet](https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/)
 - [CSES Problem Set](https://cses.fi/problemset/)
 - [AC Problem Set](https://kenkoooo.com/atcoder#/table/)
+- [AC Tags (translate to English)](https://atcoder-tags.herokuapp.com/)
 - [CF Problem Set](https://codeforces.com/problemset)
 - [Atcoder DP Tasks](https://atcoder.jp/contests/dp/tasks)
 - [5 Days of Game Theory](https://www.hackerrank.com/contests/5-days-of-game-theory/challenges)
@@ -38,6 +39,7 @@
 - [Tree DP](https://codeforces.com/blog/entry/20935)
 - [Digit DP](https://codeforces.com/blog/entry/53960)
 - [Non-trivial DP Tricks](https://codeforces.com/blog/entry/47764)
+- [Matrix Exponentiation (+ Gym Contest)](https://codeforces.com/blog/entry/80195)
 
 ##### Bit Manipulation
 
@@ -53,7 +55,6 @@
 ##### Miscellaneous
 
 - [Difference Arrays (1D & 2D)](https://codeforces.com/blog/entry/86420)
-- [Matrix Exponentiation (+ Gym Contest)](https://codeforces.com/blog/entry/80195)
 - [Probability & Expectation](https://codeforces.com/blog/entry/62690)
 - [Meet in the Middle](https://codeforces.com/blog/entry/95571)
 - [Square Root Decomposition](https://codeforces.com/blog/entry/83248)
