@@ -10,6 +10,7 @@
 - [DP Book](https://dp-book.com/Dynamic_Programming.pdf)
 - [Game Theory (Short Article)](https://www.topcoder.com/community/competitive-programming/tutorials/algorithm-games/)
 - [Game Theory (Full Notes)](https://www.cs.cmu.edu/afs/cs/academic/class/15859-f01/www/notes/comb.pdf)
+- [CF Edu](https://codeforces.com/edu/course/2)
 
 #### Practice:
 
@@ -60,6 +61,7 @@
 - [Square Root Decomposition](https://codeforces.com/blog/entry/83248)
 - [Nim Game & Grundy Numbers](https://codeforces.com/blog/entry/66040)
 - [2-SAT](https://codeforces.com/blog/entry/92977)
+- [Topicwise Problems](https://codeforces.com/blog/entry/55274)
 
 ### My Handles:
 
