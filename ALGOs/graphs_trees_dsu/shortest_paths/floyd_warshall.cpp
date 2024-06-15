@@ -45,7 +45,7 @@ int main()
             {
                 if (dist[i][k] != INF && dist[k][j] != INF) // handle negative weights
                 {
-                    if (dist[i][j] < dist[i][k] + dist[k][j])
+                    if (dist[i][j] > dist[i][k] + dist[k][j])
                     {
                         dist[i][j] = dist[i][k] + dist[k][j];
                         par[i][j] = par[k][j];
