@@ -3,7 +3,6 @@ using namespace std;
 
 vector<int> manacher(string &s)
 {
-    int n = s.size();
 
     // Make every palindrome odd-centered
     string t = "#";
@@ -13,12 +12,13 @@ vector<int> manacher(string &s)
         t.push_back('#');
     }
 
-    vector<int> p(2 * n + 1, 1);
+    int n = t.size();
+    vector<int> p(n, 1);
     int l = 1, r = 1;
     for (int i = 1; i < n; i++)
     {
         p[i] = max(1, min(r - i, p[l + r - i]));
-        while (i + p[i] < n && i - p[i] >= 0 && s[i + p[i]] == s[i - p[i]])
+        while (i + p[i] < n && i - p[i] >= 0 && t[i + p[i]] == t[i - p[i]])
             p[i]++;
 
         if (i + p[i] > r)
