@@ -24,7 +24,7 @@
 - [5 Days of Game Theory](https://www.hackerrank.com/contests/5-days-of-game-theory/challenges)
 - [CList](https://clist.by/)
 
-#### Helpful CF Blogs
+#### Helpful CF/CC Blogs
 
 ##### Graphs & Trees
 
@@ -51,6 +51,7 @@
 
 - [Data Structures](https://codeforces.com/blog/entry/15729)
 - [Segment Trees](https://codeforces.com/blog/entry/15890)
+- [Merge Sort Trees](https://discuss.codechef.com/t/merge-sort-tree-tutorial/14277)
 - [Segment Tree Beats](https://codeforces.com/blog/entry/57319)
 
 ##### Miscellaneous
