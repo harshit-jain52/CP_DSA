@@ -6,13 +6,7 @@ void solve(){
     int n; cin >> n;
     ll arr[n];
 
-    map<ll,int> left,right;
-
-    for(int i=0;i<n;i++){
-        cin >> arr[i];
-        if(left.find(arr[i])==left.end()) left[arr[i]]=i;
-        right[arr[i]]=i;
-    }
+    for(int i=0;i<n;i++) cin >> arr[i];
 
     ll pref[n],suff[n];
     pref[0]=arr[0], suff[n-1]=arr[n-1];
