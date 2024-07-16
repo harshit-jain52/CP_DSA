@@ -1,0 +1,1 @@
+### Hackerearth Problem [link](https://www.hackerearth.com/problem/algorithm/candies-price-e28e51a2-cfa8f906/)
