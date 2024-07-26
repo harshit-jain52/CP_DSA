@@ -88,9 +88,8 @@ void flattenBT(node *root) // Binary Tree to Linked List in pre-order
         {
             node *prev = curr->left;
             while (prev->right)
-            {
                 prev = prev->right;
-            }
+
             prev->right = curr->right;
             curr->right = curr->left;
             curr->left = NULL;

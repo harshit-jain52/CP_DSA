@@ -128,6 +128,45 @@ vector<int> postOrderUsing1Stack(node *curr) // left-right-curr
     return ans;
 }
 
+vector<vector<int>> allTraversals(node *curr)
+{
+    vector<int> pre, in, post;
+    stack<pair<node *, int>> st;
+
+    if (curr == NULL)
+        return {pre, in, post};
+
+    st.push({curr, 1});
+    while (!st.empty())
+    {
+        auto p = st.top();
+        st.pop();
+        curr = p.first;
+        int state = p.second;
+
+        if (state == 1)
+        {
+            pre.push_back(curr->data);
+            st.push({curr, 2});
+            if (curr->left)
+                st.push({curr->left, 1});
+        }
+        else if (state == 2)
+        {
+            in.push_back(curr->data);
+            st.push({curr, 3});
+            if (curr->right)
+                st.push({curr->right, 1});
+        }
+        else
+        {
+            post.push_back(curr->data);
+        }
+    }
+
+    return {pre, in, post};
+}
+
 vector<vector<int>> levelOrder(node *root)
 {
     vector<vector<int>> ans;
@@ -178,7 +217,7 @@ vector<int> boundaryTraversal(node *root) // Anti-Clockwise
             curr = curr->right;
     }
 
-    // Leaves
+    // Leaves (by Inorder Traversal)
     curr = root;
     stack<node *> st;
     while (true)
@@ -297,4 +336,29 @@ vector<vector<int>> diagonalTraversal(node *root)
     }
 
     return ans;
+}
+
+void flattenBT(node *curr) // Binary Tree to Linked List in pre-order
+{
+    if (curr == NULL)
+        return;
+
+    stack<node *> st;
+    st.push(curr);
+
+    while (!st.empty())
+    {
+        curr = st.top();
+        st.pop();
+
+        if (curr->right)
+            st.push(curr->right);
+
+        if (curr->left)
+            st.push(curr->left);
+
+        if (!st.empty())
+            curr->right = st.top();
+        curr->left = NULL;
+    }
 }

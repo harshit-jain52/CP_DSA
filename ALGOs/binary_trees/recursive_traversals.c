@@ -44,3 +44,17 @@ void postOrder(node *vertex)
     postOrder(vertex->right);
     printf("%d ", vertex->data);
 }
+
+node *prev = NULL;
+void flattenBT(node *curr) // Binary Tree to Linked List in pre-order
+{
+    if (curr == NULL)
+        return;
+
+    flattenBT(curr->right);
+    flattenBT(curr->left);
+
+    curr->right = prev;
+    curr->left = NULL;
+    prev = curr;
+}
