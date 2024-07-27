@@ -23,6 +23,7 @@
 - [Atcoder DP Tasks](https://atcoder.jp/contests/dp/tasks)
 - [5 Days of Game Theory](https://www.hackerrank.com/contests/5-days-of-game-theory/challenges)
 - [CList](https://clist.by/)
+- [Companies' OA Problems](https://maang.in/)
 
 #### Helpful CF/CC Blogs
 
@@ -33,6 +34,7 @@
 - [Diameter of a Tree](https://codeforces.com/blog/entry/101271)
 - [LCA Problems](https://codeforces.com/blog/entry/43917)
 - [DFS Tree, Articulation Points, Bridges](https://codeforces.com/blog/entry/68138)
+- [Directed DFS Tree](https://codeforces.com/blog/entry/131187)
 - [Bridge Tree](https://codeforces.com/blog/entry/99259)
 
 ##### Dynamic Programming
@@ -53,6 +55,7 @@
 - [Segment Trees](https://codeforces.com/blog/entry/15890)
 - [Merge Sort Trees](https://discuss.codechef.com/t/merge-sort-tree-tutorial/14277)
 - [Segment Tree Beats](https://codeforces.com/blog/entry/57319)
+- [Treaps (+ Gym Contest)](https://codeforces.com/blog/entry/84017)
 
 ##### Miscellaneous
 
