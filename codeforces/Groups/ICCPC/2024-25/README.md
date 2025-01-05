@@ -6,3 +6,5 @@
 4. [2019-2020 ACM-ICPC Brazil Subregional Programming Contest](https://codeforces.com/gym/102346)
 5. [The 2023 CCPC (Qinhuangdao) Onsite (The 2nd Universal Cup. Stage 9: Qinhuangdao)](https://codeforces.com/gym/104787)
 6. [2022-2023 Winter Petrozavodsk Camp, Day 2: GP of ainta](https://codeforces.com/gym/104427)
+7. [2016-2017 ACM-ICPC, NEERC, Northern Subregional Contest](https://codeforces.com/gym/101142)
+8. [Samara Farewell Contest 2020 (XXI Open Cup, Grand Prix of Samara)](https://codeforces.com/gym/102916)
