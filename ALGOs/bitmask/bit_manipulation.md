@@ -2,12 +2,13 @@
 
 ```cpp
 int a;
-builtin_clz(a); // Count Leading Zeroes
-builtin_ctz(a); // Count Trailing Zeroes
-builtin_popcount(a); // Count set bits
+__builtin_clz(a); // Count Leading Zeroes
+__builtin_ctz(a); // Count Trailing Zeroes
+__builtin_popcount(a); // Count set bits
 
 long long x;
-builtin_popcountll(x);
+__builtin_popcountll(x); // Counte set bits
+63 - __builtin_clzll(x); // Get MSB
 ```
 
 ### Short Techniques & Tricks
