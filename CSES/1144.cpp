@@ -95,7 +95,7 @@ int main()
 	vec.erase(unique(vec.begin(), vec.end()), vec.end());
 
 	int idx = 0;
-	unordered_map<int, int> cc; // coordinate compression
+	map<int, int> cc; // coordinate compression
 	for (int it : vec)
 	{
 		cc[it] = idx++;
